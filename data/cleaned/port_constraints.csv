@@ -1,0 +1,8 @@
+port_name,port_code,state,max_draft_m,max_loa_m,max_beam_m,max_dwt,handling_rate_tons_per_day,berth_count,has_mechanized_handling,tidal_restriction
+Kolkata/Haldia,INKOL,West Bengal,9.1,220,32,55000,18000,14,true,true
+Paradip,INPRT,Odisha,14.5,300,45,150000,45000,18,true,false
+Visakhapatnam,INVTZ,Andhra Pradesh,17.1,275,43,175000,55000,24,true,false
+Gangavaram,INGVP,Andhra Pradesh,18.5,300,50,200000,60000,9,true,false
+Krishnapatnam,INKRI,Andhra Pradesh,18.5,300,50,200000,50000,16,true,false
+Kamarajar (Ennore),INENR,Tamil Nadu,16.0,250,40,120000,35000,12,true,false
+Chennai,INMAA,Tamil Nadu,12.0,200,35,65000,20000,21,true,true

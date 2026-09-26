@@ -1,0 +1,36 @@
+port_name,country,port_type,max_draft_m,max_loa_m,max_beam_m,handling_rate_tpd,max_vessel_class,latitude,longitude,tidal_range_m,berths,annual_capacity_mt,restrictions
+Paradip,India,Discharge,16.5,300,46.0,35000,Capesize,20.27,86.71,1.5,14,65,Cyclone risk Oct-Dec; siltation issues
+Visakhapatnam (Inner),India,Discharge,14.5,240,32.5,20000,Panamax,17.71,83.33,1.2,24,40,Limited to Panamax due to inner harbor constraints
+Visakhapatnam (Outer/VGCB),India,Discharge,18.1,356,50.0,70000,Capesize,17.7,83.28,1.2,6,25,Deep draft outer berth; handles large Capesize
+Gangavaram,India,Discharge,19.5,320,48.0,45000,Capesize,17.62,83.23,1.0,8,30,Adani port; deep water; 24/7 operations
+Dhamra,India,Discharge,18.0,310,48.0,50000,Capesize,20.78,87.13,1.8,4,20,Deep draft; cyclone shelter nearby
+Gopalpur,India,Discharge,14.5,230,33.0,18000,Supramax,19.28,84.92,1.3,3,12,Smaller port; Supramax/Handysize only
+Haldia Dock Complex,India,Discharge,8.5,230,32.26,12000,Handysize,22.03,88.1,2.5,12,15,Severe draft restriction; tidal window critical
+Port Hedland (Inner),Australia,Loading,19.8,340,50.0,85000,Capesize,-20.31,118.58,1.5,18,520,World's largest iron ore port; tidal range 1.5m
+Port Hedland (Outer),Australia,Loading,21.0,360,55.0,95000,Capesize,-20.31,118.58,1.5,4,180,New large berths; deeper channel
+Dampier,Western Australia,Loading,19.5,340,50.0,80000,Capesize,-20.66,116.71,2.0,8,250,Rio Tinto iron ore; tidal range 4m
+Cape Lambert,Western Australia,Loading,19.5,340,50.0,80000,Capesize,-20.66,116.71,2.0,4,180,Rio Tinto; similar to Dampier
+Hay Point Coal Terminal,Queensland,Loading,19.0,300,47.0,75000,Capesize,-21.28,149.3,1.5,3,120,BHP coal; 3 berths
+Dalrymple Bay Coal Terminal,Queensland,Loading,19.0,300,47.0,75000,Capesize,-21.27,149.28,1.5,7,200,World's largest coal terminal; 7 berths
+Gladstone (RG Tanna),Queensland,Loading,19.5,300,48.0,70000,Capesize,-23.84,151.25,1.8,5,150,Multi-commodity; 5 coal berths
+Gladstone (Barney Point),Queensland,Loading,16.5,275,45.0,50000,Panamax,-23.85,151.26,1.8,2,40,Older terminal; Panamax constraint
+Newcastle (Kooragang),NSW,Loading,16.5,300,45.0,55000,Capesize,-32.92,151.78,1.3,4,120,Major coal; Capesize-Panamax
+Newcastle (Carrington),NSW,Loading,14.0,250,40.0,35000,Supramax,-32.93,151.77,1.3,2,30,Smaller channel; limited draft
+Brisbane (Fisherman Islands),Queensland,Loading,14.5,260,42.0,30000,Panamax,-27.38,153.17,1.5,6,50,Multi-commodity; limited depth
+Abbot Point,Queensland,Loading,17.5,290,46.0,60000,Capesize,-19.88,148.05,1.2,2,60,Deepwater coal; expansion planned
+Taboneo Anchorage,Indonesia,Loading,14.0,240,38.0,25000,Panamax,-3.73,114.45,2.0,2,30,South Kalimantan coal; lightering operations
+Samarinda (Mahakam River),Indonesia,Loading,13.5,220,35.0,20000,Supramax,-0.5,117.15,2.5,4,25,River port; restricted beam
+Balikpapan,Indonesia,Loading,13.0,210,33.0,18000,Supramax,-1.24,116.91,2.0,3,20,East Kalimantan; shallow approach
+Adang Bay,Indonesia,Loading,14.5,240,38.0,28000,Panamax,-1.5,116.5,1.5,1,15,Deepwater anchorage for coal loading
+Richards Bay Coal Terminal,South Africa,Loading,17.5,300,47.0,65000,Capesize,-28.79,32.05,1.5,4,90,Africa's largest coal; 4 berths
+Maputo (Matola Coal Terminal),Mozambique,Loading,13.5,230,32.2,20000,Panamax,-25.97,32.59,2.5,2,15,Bottleneck port; rail constraints
+Beira (Pebane),Mozambique,Loading,14.0,240,35.0,22000,Panamax,-19.84,34.86,2.0,2,12,Coal loading; limited capacity
+Durban (Coal Terminal),South Africa,Loading,15.0,260,40.0,25000,Panamax,-29.87,31.01,1.5,4,20,Multi-commodity; rail congestion
+Baltimore (Dundalk Terminal),USA,Loading,15.2,290,45.0,40000,Capesize,-39.26,76.58,0.5,6,40,Coal exports; 50ft channel
+Baltimore (Curtis Bay),USA,Loading,14.5,260,40.0,35000,Panamax,-39.23,76.57,0.5,3,25,Smaller berths; limited LOA
+Norfolk (Lamberts Point),USA,Loading,16.5,300,48.0,45000,Capesize,-36.88,76.31,0.5,6,70,World's largest coal transshipment
+Norfolk (Pier 6),USA,Loading,15.5,280,45.0,40000,Capesize,-36.89,76.32,0.5,2,30,Deep channel; restricted LOA
+Mobile,USA,Loading,14.0,250,40.0,30000,Panamax,-30.69,88.05,0.8,4,25,Gulf port; limited draft
+New Orleans,USA,Loading,13.7,230,35.0,25000,Supramax,-29.95,90.07,0.6,8,30,Mississippi River constraints
+Vancouver (Westshore),Canada,Loading,17.5,300,48.0,50000,Capesize,-49.29,123.12,2.0,3,40,Coal terminal; deep water
+Prince Rupert,Canada,Loading,16.5,280,46.0,45000,Capesize,-54.32,130.33,3.0,2,25,Deep water; growing coal exports

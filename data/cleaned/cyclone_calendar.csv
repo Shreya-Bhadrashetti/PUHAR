@@ -1,0 +1,45 @@
+month,region,historical_cyclone_frequency,avg_severity,typical_wind_speed_kmh,advisory_level
+1,Bay of Bengal - North,0.02,1.0,45,green
+2,Bay of Bengal - North,0.01,1.0,40,green
+3,Bay of Bengal - North,0.03,1.2,50,green
+4,Bay of Bengal - North,0.12,2.0,75,yellow
+5,Bay of Bengal - North,0.22,2.8,100,orange
+6,Bay of Bengal - North,0.10,2.2,85,yellow
+7,Bay of Bengal - North,0.05,1.5,60,green
+8,Bay of Bengal - North,0.06,1.5,65,green
+9,Bay of Bengal - North,0.10,2.0,80,yellow
+10,Bay of Bengal - North,0.30,3.2,120,orange
+11,Bay of Bengal - North,0.45,3.8,140,red
+12,Bay of Bengal - North,0.28,3.0,110,orange
+1,Bay of Bengal - South,0.03,1.2,50,green
+2,Bay of Bengal - South,0.02,1.0,45,green
+3,Bay of Bengal - South,0.04,1.3,55,green
+4,Bay of Bengal - South,0.15,2.2,80,yellow
+5,Bay of Bengal - South,0.28,3.0,110,orange
+6,Bay of Bengal - South,0.12,2.3,90,yellow
+7,Bay of Bengal - South,0.06,1.5,65,green
+8,Bay of Bengal - South,0.07,1.6,70,yellow
+9,Bay of Bengal - South,0.12,2.1,85,yellow
+10,Bay of Bengal - South,0.35,3.5,130,orange
+11,Bay of Bengal - South,0.50,4.0,150,red
+12,Bay of Bengal - South,0.32,3.2,115,orange
+1,Andaman Sea,0.01,1.0,40,green
+2,Andaman Sea,0.01,1.0,40,green
+3,Andaman Sea,0.02,1.0,45,green
+4,Andaman Sea,0.08,1.8,70,yellow
+5,Andaman Sea,0.15,2.5,95,yellow
+6,Andaman Sea,0.08,1.8,70,yellow
+7,Andaman Sea,0.04,1.3,55,green
+8,Andaman Sea,0.04,1.3,55,green
+9,Bay of Bengal - Central,0.08,1.8,75,yellow
+10,Bay of Bengal - Central,0.32,3.3,125,orange
+11,Bay of Bengal - Central,0.48,3.9,145,red
+12,Bay of Bengal - Central,0.30,3.1,112,orange
+1,Bay of Bengal - Central,0.02,1.0,45,green
+2,Bay of Bengal - Central,0.01,1.0,40,green
+3,Bay of Bengal - Central,0.03,1.2,50,green
+4,Bay of Bengal - Central,0.13,2.1,78,yellow
+5,Bay of Bengal - Central,0.25,2.9,105,orange
+6,Bay of Bengal - Central,0.11,2.2,88,yellow
+7,Bay of Bengal - Central,0.05,1.5,62,green
+8,Bay of Bengal - Central,0.06,1.5,65,green
