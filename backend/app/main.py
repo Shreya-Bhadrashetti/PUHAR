@@ -2,15 +2,15 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 
-from ml.freight_forecaster import (
+from freight_forecasting.freight_forecaster import (
     forecast_freight,
     check_freight_availability,
     map_physical_route,
 )
 
-from ml.vessel_optimizer import optimize_vessel
+from vessel_optimization.vessel_optimizer import optimize_vessel
 
-from ml.entry_timing import analyze_entry_timing
+from vessel_optimization.entry_timing import analyze_entry_timing
 
 
 app = FastAPI(

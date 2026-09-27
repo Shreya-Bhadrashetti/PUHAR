@@ -25,7 +25,6 @@ Thumbs.db
 .ipynb_checkpoints/
 
 # ML generated files
-*.pkl
 *.joblib
 
 # Temporary files

@@ -11,7 +11,7 @@ from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 # 1. LOAD ML DATA
 # --------------------------------------------------
 
-data_path = Path("ml/data/freight_training_data.csv")
+data_path = Path("backend/freight_forecasting/data/freight_training_data.csv")
 
 df = pd.read_csv(data_path)
 
@@ -112,7 +112,7 @@ print(f"R²   : {r2:.4f}")
 # 8. SAVE MODEL
 # --------------------------------------------------
 
-model_dir = Path("ml/models")
+model_dir = Path("backend/freight_forecasting/models")
 model_dir.mkdir(parents=True, exist_ok=True)
 
 model_path = model_dir / "freight_model.pkl"

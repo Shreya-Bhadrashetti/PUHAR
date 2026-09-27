@@ -141,7 +141,7 @@ data = data.dropna(
 # 9. SAVE ML DATASET
 # --------------------------------------------------
 
-output_dir = Path("ml/data")
+output_dir = Path("backend/freight_forecasting/data")
 output_dir.mkdir(parents=True, exist_ok=True)
 
 output_file = output_dir / "freight_training_data.csv"
