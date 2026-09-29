@@ -27,6 +27,13 @@ class ForecastInput(BaseModel):
     departure_date: datetime | None = None
 
 
+class VesselOptimizationInput(BaseModel):
+    vessel: VesselInput
+    origin_port: str
+    destination_port: str
+    cargo_quantity_mt: float = Field(gt=0)
+
+
 class PortFilterInput(BaseModel):
     vessel: VesselInput
     candidate_ports: list[str] = Field(min_length=1)
@@ -52,6 +59,8 @@ class AdvisorRequest(BaseModel):
     vessel_class: str
     departure_date: datetime | None = None
     eta: datetime | None = None
+    origin_port: str | None = None
+    cargo_quantity_mt: float | None = Field(default=None, gt=0)
 
 
 class AdvisorResponse(BaseModel):
@@ -59,6 +68,7 @@ class AdvisorResponse(BaseModel):
     ports: ServiceOutput
     backhaul: ServiceOutput
     risk: ServiceOutput
+    vessel_optimization: ServiceOutput | None = None
     recommendation: dict[str, Any]
     explainability: list[str]
 

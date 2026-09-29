@@ -1,9 +1,10 @@
 from fastapi import APIRouter, Depends
 from fastapi.concurrency import run_in_threadpool
 from backend.app.adapters import BackhaulAdapter, ForecastAdapter, PortFilterAdapter, RiskAdapter
+from backend.app.vessel_adapter import VesselOptimizationAdapter
 from backend.app.core.security import require_role
 from backend.app.cache import cache
-from backend.app.schemas.contracts import BackhaulInput, ForecastInput, PortFilterInput, RiskInput, ServiceOutput
+from backend.app.schemas.contracts import BackhaulInput, ForecastInput, PortFilterInput, RiskInput, ServiceOutput, VesselOptimizationInput
 
 router = APIRouter(tags=["models"])
 _user = Depends(require_role("charterer", "admin"))
@@ -31,3 +32,7 @@ async def risk_assess(payload: RiskInput, _= _user):
     output = await run_in_threadpool(RiskAdapter().run, payload)
     cache.set(key, output.model_dump(mode="json"), 20 * 60)
     return output
+
+@router.post("/vessels/optimize", response_model=ServiceOutput)
+async def optimize_vessel(payload: VesselOptimizationInput, _= _user):
+    return await run_in_threadpool(VesselOptimizationAdapter().run, payload)
