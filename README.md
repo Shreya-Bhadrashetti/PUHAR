@@ -1,68 +1,275 @@
 # PUHAR
 
-Predictive Unified Hub for Agile Routing — bulk-cargo chartering advisor for East Coast India ports.
+**Smart chartering advisor with backhaul intelligence for East Coast India ports.**
 
-This repository is one project: a **Vite + React** UI in `frontend/`, a **FastAPI** API in `backend/`, cleaned datasets in `data/`, and ML training helpers in `ml/`. Environment variables live in the repo-root `.env` (API) and `frontend/.env` (UI).
+PUHAR helps bulk cargo charterers decide *what to charter, where to route it, and what to carry on the way back*. It combines four decision models behind one voyage-themed web app: backhaul matching with explainable AI, risk mitigation and rerouting, freight rate forecasting, and vessel optimization.
 
-## Quick start (local)
+> Live demo: `<your-deployed-url>`
 
-From the repository root:
+---
 
-```powershell
-copy .env.example .env
-copy frontend\.env.example frontend\.env
-python -m venv .venv
-.\.venv\Scripts\Activate.ps1
-pip install -r backend\requirements.txt
-python -m uvicorn backend.main:app --reload --host 0.0.0.0 --port 8000
+## Table of contents
+
+- [Features](#features)
+- [How it works](#how-it-works)
+- [Tech stack](#tech-stack)
+- [Project structure](#project-structure)
+- [Getting started](#getting-started)
+- [Environment variables](#environment-variables)
+- [API reference](#api-reference)
+- [Connecting your models](#connecting-your-models)
+- [Deployment](#deployment)
+- [Troubleshooting](#troubleshooting)
+- [Roadmap](#roadmap)
+- [Team and license](#team-and-license)
+
+---
+
+## Features
+
+| # | Module | What it does | Inputs |
+|---|--------|--------------|--------|
+| 1 | **Backhaul Matcher + Explainable AI** | Finds return-leg cargo for a vessel and explains *why* each match was ranked the way it was | Origin, Destination, Size of cargo, Date of voyage |
+| 2 | **Risk Mitigation** | Detects cyclone, port congestion and port-constraint risks and recommends a reroute, always stating the reason | Origin - Destination, Date and time of voyage |
+| 3 | **Freight Rate Forecasting** | Predicts the expected freight rate for a route and cargo size | Size of cargo, Origin, Destination |
+| 4 | **Vessel Optimization** | Recommends the best-fit vessel size/class for the cargo and route | Size of cargo, Origin, Destination |
+
+**Risk rules**
+
+- **Cyclone (red alert):** rerouting is mandatory and immediate. It is shown as a full-width banner with no accept/decline option.
+- **Port constraints and congestion:** a reroute is suggested and the reason (cyclone, port issue, or route traffic) is always stated.
+
+**Landing page**
+
+- Scroll-driven voyage animation: the PUHAR vessel appears, then the four feature cards rise into view.
+- **Trends** section with an interactive East Coast freight-rate graph and an interactive weather-alert and cyclone-pattern map.
+- Navbar: *Dashboard*, *About PUHAR*, *Trends* scroll to their sections.
+- Each feature card opens its own page with a 3D animated transition.
+
+---
+
+## How it works
+
+```
+Browser (React)  ──/api/*──▶  FastAPI (main.py)  ──▶  adapters.py  ──▶  services/*  (the 4 models)
+        ▲                            │
+        └──────── serves built frontend (frontend/dist) in production ────┘
 ```
 
-In a second terminal:
+In production the backend serves both the API and the built frontend, so the whole app runs from **one link** with no CORS setup.
 
-```powershell
+---
+
+## Tech stack
+
+**Frontend:** React, Vite, Tailwind CSS, React Router, Framer Motion, Recharts, Leaflet / react-leaflet, Axios
+
+**Backend:** Python, FastAPI, Uvicorn, Pydantic, python-dotenv
+
+**Models:** four Python services under `backend/services/`
+
+**Deployment:** Docker, single web service
+
+---
+
+## Project structure
+
+```
+Puhar/
+├── backend/
+│   ├── main.py              # FastAPI app, routes, serves frontend build
+│   ├── config.py            # loads .env, CORS, paths
+│   ├── adapters.py          # connects API to the four model services
+│   ├── services/            # backhaul, risk, forecast, vessel models
+│   ├── data/                # freight.json, weather.json (trend graphs)
+│   ├── requirements.txt
+│   ├── .env                 # secrets (never commit)
+│   └── .env.example         # safe template
+├── frontend/
+│   ├── design/              # UI/UX references (Figma link, screens, spec)
+│   ├── src/
+│   │   ├── api/             # axios client and endpoint functions
+│   │   ├── components/      # layout, scene, map, charts, cards, alerts
+│   │   ├── pages/           # BackhaulMatcher, RiskMitigation, Forecast, Vessel
+│   │   ├── hooks/           # useApi
+│   │   └── styles/          # design tokens
+│   ├── .env
+│   ├── .env.production
+│   └── vite.config.js
+├── Dockerfile
+├── .gitignore
+└── README.md
+```
+
+---
+
+## Getting started
+
+### Prerequisites
+
+- Python 3.11+
+- Node.js 20+
+- Git
+
+### 1. Clone
+
+```bash
+git clone <your-repo-url>
+cd Puhar
+```
+
+### 2. Backend
+
+```bash
+cd backend
+python -m venv .venv
+# Windows: .venv\Scripts\activate    macOS/Linux: source .venv/bin/activate
+pip install -r requirements.txt
+cp .env.example .env        # then fill in your keys
+uvicorn main:app --reload --port 8000
+```
+
+Check it is running:
+
+- Health: http://localhost:8000/api/health
+- Interactive API docs: http://localhost:8000/docs
+
+### 3. Frontend (new terminal)
+
+```bash
 cd frontend
 npm install
 npm run dev
 ```
 
-Open [http://localhost:5173](http://localhost:5173). The Vite dev server proxies `/api` to FastAPI on port `8000`.
+Open http://localhost:5173. The Vite dev server proxies `/api` to the backend, so there are no CORS problems.
 
-Demo login (local only): `admin` / `admin`.
+### 4. Production build, one link
 
-## Quick start (Docker)
-
-```powershell
-copy .env.example .env
-docker compose up --build
+```bash
+cd frontend && npm run build
+cd ../backend && uvicorn main:app --port 8000
 ```
 
-- UI: [http://localhost:3000](http://localhost:3000) (nginx proxies `/api` to the API)
-- API: [http://localhost:8000](http://localhost:8000)
-- Health: [http://localhost:8000/health](http://localhost:8000/health)
+Open http://localhost:8000. The site and API are served together.
 
-Compose uses Postgres and Redis. Local development can stay on SQLite; Redis is optional (the API falls back to in-memory cache).
+---
 
-## Layout
+## Environment variables
 
-| Path | Role |
-| --- | --- |
-| `frontend/` | React UI (charter advisor, forecast, backhaul, risk, vessel optimization) |
-| `backend/` | FastAPI app, adapters, ingestion, tests |
-| `data/cleaned/` | Reference CSVs used by models and adapters |
-| `ml/` | Freight-model training scripts |
-| `.env` | API secrets and URLs (gitignored; copy from `.env.example`) |
-| `frontend/.env` | `VITE_API_BASE` and proxy target |
+### `backend/.env`
 
-## API surface (proxied as `/api/...` from the UI)
+| Variable | Purpose |
+|----------|---------|
+| `GOOGLE_API_KEY` | Weather / maps data used by the risk model |
+| `IMD_API_KEY` | Indian government weather and cyclone data |
+| `INCOIS_API_KEY` | Indian ocean and coastal information data |
+| `CORS_ORIGINS` | Comma-separated allowed origins (dev: `http://localhost:5173`; production: your live URL) |
 
-- `POST /auth/login`
-- `POST /advisor/recommend`
-- `POST /forecast`
-- `POST /backhaul/match`
-- `POST /risk/assess`
-- `POST /vessels/optimize`
-- `POST /ports/filter`
-- `GET /alerts`
-- `GET /health`
+> Use the exact names your services read via `os.getenv(...)`. Update `.env.example` to match.
 
-Always run Python commands from the **repository root** so `backend.main:app` and dataset paths resolve.
+### `frontend/.env`
+
+| Variable | Purpose |
+|----------|---------|
+| `VITE_API_BASE` | API path prefix, `/api` |
+| `VITE_BACKEND_URL` | Dev proxy target, `http://localhost:8000` |
+
+**Never put secret keys in a `VITE_` variable.** Anything starting with `VITE_` is shipped to the browser.
+
+---
+
+## API reference
+
+All endpoints are under `/api`. Full interactive docs are at `/docs`.
+
+| Method | Endpoint | Body |
+|--------|----------|------|
+| GET | `/api/health` | none |
+| POST | `/api/backhaul` | `origin`, `destination`, `cargo_size`, `voyage_date` |
+| POST | `/api/risk` | `origin`, `destination`, `voyage_datetime` |
+| POST | `/api/forecast` | `cargo_size`, `origin`, `destination` |
+| POST | `/api/vessel` | `cargo_size`, `origin`, `destination` |
+| GET | `/api/trends/freight` | none (reads `backend/data/freight.json`) |
+| GET | `/api/trends/weather` | none (reads `backend/data/weather.json`) |
+
+**Example**
+
+```bash
+curl -X POST http://localhost:8000/api/forecast \
+  -H "Content-Type: application/json" \
+  -d '{"cargo_size": 50000, "origin": "Paradip", "destination": "Chennai"}'
+```
+
+**Error codes**
+
+| Code | Meaning |
+|------|---------|
+| 422 | Invalid input (missing field, cargo size not positive) |
+| 501 | A model service is not connected. Check `adapters.py` |
+| 500 | The model raised an error. The message is returned in `detail` |
+
+---
+
+## Connecting your models
+
+`backend/adapters.py` is the single bridge between the API and your services. For each of the four functions, set the module and function name to match your code in `backend/services/`:
+
+```python
+def forecast(p: dict):
+    from services import freight_forecast as svc   # your module
+    return svc.predict(                            # your function
+        cargo_size=p["cargo_size"],
+        origin=p["origin"],
+        destination=p["destination"],
+    )
+```
+
+Imports are lazy, so one broken model does not stop the server. The other endpoints keep working.
+
+---
+
+## Deployment
+
+The app deploys as a **single Docker service** (frontend build + FastAPI).
+
+1. Push the repo to GitHub. Confirm `backend/.env` is not committed.
+2. Create a Web Service on your host (for example Render, runtime **Docker**), pointing at the repo.
+3. Add the environment variables from the table above in the host's dashboard.
+4. Set `CORS_ORIGINS` to the live URL.
+5. Set the health check path to `/api/health`.
+
+If your models need more memory than a free plan gives, use a larger plan or a host with more RAM, such as Hugging Face Spaces (Docker, port 7860). The same Dockerfile works with no code changes.
+
+**Free-tier note:** free instances sleep when idle. Open the link a couple of minutes before a demo.
+
+---
+
+## Troubleshooting
+
+| Problem | Fix |
+|---------|-----|
+| `501 Model service not connected` | Wrong module or function name in `adapters.py` |
+| Blank page or 404 on refresh in production | Make sure `frontend/dist` exists next to `backend/` and the SPA fallback in `main.py` is present |
+| API calls fail in dev | Backend not running on port 8000, or `VITE_BACKEND_URL` is wrong |
+| CORS errors on a live deploy | `CORS_ORIGINS` must include your exact live URL |
+| Keys not loading | `backend/.env` must be in `backend/`, and you must run uvicorn from inside `backend/` |
+| Trend graphs empty | Add `freight.json` and `weather.json` to `backend/data/` |
+| Out-of-memory crash on deploy | Move to a plan or host with more RAM |
+
+---
+
+## Roadmap
+
+- [ ] Live freight-rate and weather feeds replacing the sample data
+- [ ] Saved voyages and user accounts
+- [ ] Export of recommendations as a PDF report
+- [ ] More ports and routes beyond the East Coast
+
+---
+
+## Team and license
+
+Built by `<team / author names>`, `<college / organisation>`.
+
+License: `<choose a license, e.g. MIT>`
