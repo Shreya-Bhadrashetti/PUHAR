@@ -1,5 +1,9 @@
 # Environment variables / API keys
 .env
+frontend/.env
+
+# Local database files
+database/
 
 
 # Python virtual environments
@@ -33,10 +37,6 @@ Thumbs.db
 frontend/node_modules/
 frontend/dist/
 
-# Frontend generated files
-frontend/node_modules/
-frontend/dist/
-
-# Frontend generated files
-frontend/node_modules/
-frontend/dist/
+# Unused Next.js scaffold
+puhar/node_modules/
+puhar/.next/
