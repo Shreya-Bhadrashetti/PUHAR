@@ -3,9 +3,14 @@ from pathlib import Path
 import pandas as pd
 from sqlalchemy import create_engine
 
-from backend.app.core.config import settings
+try:
+    from backend.app.core.config import settings
+except ImportError:
+    from app.core.config import settings
 
-engine = create_engine(settings.database_url)
+db_url = getattr(settings, "database_url", None) or getattr(settings, "DATABASE_URL", None)
+engine = create_engine(db_url)
+
 
 
 # --------------------------------------------------

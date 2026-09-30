@@ -3,21 +3,31 @@ from pathlib import Path
 import pandas as pd
 from sqlalchemy import create_engine
 
-from app.core.config import settings
-
-from vessel_optimization.vessel_optimizer import optimize_vessel
-from freight_forecasting.freight_forecaster import (
-    forecast_freight,
-    map_physical_route,
-    check_freight_availability,
-)
+try:
+    from backend.app.core.config import settings
+    from backend.vessel_optimization.vessel_optimizer import optimize_vessel
+    from backend.freight_forecasting.freight_forecaster import (
+        forecast_freight,
+        map_physical_route,
+        check_freight_availability,
+    )
+except ImportError:
+    from app.core.config import settings
+    from vessel_optimization.vessel_optimizer import optimize_vessel
+    from freight_forecasting.freight_forecaster import (
+        forecast_freight,
+        map_physical_route,
+        check_freight_availability,
+    )
 
 
 # --------------------------------------------------
 # DATABASE
 # --------------------------------------------------
 
-engine = create_engine(settings.database_url)
+db_url = getattr(settings, "database_url", None) or getattr(settings, "DATABASE_URL", None)
+engine = create_engine(db_url)
+
 
 
 # --------------------------------------------------
