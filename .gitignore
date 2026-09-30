@@ -4,39 +4,49 @@ frontend/.env
 
 # Local database files
 database/
-
+*.db
+*.sqlite
+*.sqlite3
 
 # Python virtual environments
 venv/
 .venv/
-.venv
 
 # Python cache
 __pycache__/
 *.py[cod]
+*.pyo
+
 # Testing
 .pytest_cache/
 .coverage
 htmlcov/
 
+# Jupyter
+.ipynb_checkpoints/
+
+# ML generated files
+*.joblib
+
 # IDE
 .vscode/
 .idea/
 
-# OS
+# OS & Temp
 .DS_Store
 Thumbs.db
+*.tmp
+*.temp
 
 # Logs
 *.log
-# Local databases
-*.db
-*.sqlite
-*.sqlite3
+
 # Frontend generated files
 frontend/node_modules/
 frontend/dist/
+frontend/.vite/
 
 # Unused Next.js scaffold
 puhar/node_modules/
 puhar/.next/
+
