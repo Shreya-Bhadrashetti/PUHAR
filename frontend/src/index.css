@@ -1,0 +1,246 @@
+@import './styles/tokens.css';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ──── Global Resets & Base ──── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-sans);
+  background: var(--color-black);
+  color: var(--color-white);
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+/* ──── Scrollbar ──── */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-dark-3);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-gray-6);
+  border-radius: var(--radius-full);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-cyan);
+}
+
+/* ──── Selection ──── */
+::selection {
+  background: rgba(0, 201, 255, 0.3);
+  color: var(--color-white);
+}
+
+/* ──── Focus Visible ──── */
+:focus-visible {
+  outline: 2px solid var(--color-cyan);
+  outline-offset: 2px;
+}
+
+/* ──── Typography Utilities ──── */
+.font-display { font-family: var(--font-display); }
+.font-mono    { font-family: var(--font-mono); }
+
+/* ──── Gradient Text ──── */
+.gradient-text {
+  background: linear-gradient(135deg, var(--color-cyan), var(--color-accent-2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.gradient-text-gold {
+  background: linear-gradient(135deg, var(--color-gold), var(--color-gold-2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ──── Glass Card ──── */
+.glass-card {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+/* ──── Glow Border ──── */
+.glow-border {
+  border: 1px solid rgba(0, 201, 255, 0.3);
+  box-shadow: 0 0 20px rgba(0, 201, 255, 0.1);
+}
+.glow-border:hover {
+  border-color: rgba(0, 201, 255, 0.6);
+  box-shadow: 0 0 30px rgba(0, 201, 255, 0.2);
+}
+
+/* ──── Loading Pulse ──── */
+@keyframes puhar-pulse {
+  0%, 100% { opacity: 0.3; transform: scale(0.95); }
+  50%       { opacity: 1;   transform: scale(1.05); }
+}
+.puhar-loading {
+  animation: puhar-pulse 1.8s ease-in-out infinite;
+}
+
+/* ──── Spinning Ring ──── */
+@keyframes spin-ring {
+  to { transform: rotate(360deg); }
+}
+.spin-ring {
+  animation: spin-ring 1.2s linear infinite;
+}
+
+/* ──── Fade Animations ──── */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeInLeft {
+  from { opacity: 0; transform: translateX(-24px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes fadeInRight {
+  from { opacity: 0; transform: translateX(24px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to   { opacity: 1; transform: scale(1); }
+}
+.animate-fade-in-up   { animation: fadeInUp   0.7s var(--ease-cinematic) forwards; }
+.animate-fade-in-down { animation: fadeInDown 0.7s var(--ease-cinematic) forwards; }
+.animate-fade-in-left { animation: fadeInLeft 0.7s var(--ease-cinematic) forwards; }
+.animate-fade-in-right{ animation: fadeInRight 0.7s var(--ease-cinematic) forwards; }
+.animate-scale-in     { animation: scaleIn    0.5s var(--ease-spring)    forwards; }
+
+/* ──── Delay Utilities ──── */
+.delay-100 { animation-delay: 100ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-300 { animation-delay: 300ms; }
+.delay-400 { animation-delay: 400ms; }
+.delay-500 { animation-delay: 500ms; }
+.delay-600 { animation-delay: 600ms; }
+.delay-700 { animation-delay: 700ms; }
+.delay-800 { animation-delay: 800ms; }
+
+/* ──── Leaflet Overrides ──── */
+.leaflet-container {
+  background: var(--color-dark-3) !important;
+  font-family: var(--font-sans) !important;
+}
+.leaflet-popup-content-wrapper {
+  background: var(--color-dark-4) !important;
+  color: var(--color-white) !important;
+  border: 1px solid rgba(0, 201, 255, 0.3) !important;
+  border-radius: var(--radius-lg) !important;
+  box-shadow: var(--shadow-glow) !important;
+}
+.leaflet-popup-tip {
+  background: var(--color-dark-4) !important;
+}
+.leaflet-control-zoom a {
+  background: var(--color-dark-4) !important;
+  color: var(--color-gray-3) !important;
+  border-color: var(--color-gray-6) !important;
+}
+
+/* ──── Input Base ──── */
+.puhar-input {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: var(--color-white);
+  border-radius: var(--radius-lg);
+  padding: 0.75rem 1rem;
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  transition: border-color 200ms, box-shadow 200ms;
+  width: 100%;
+  outline: none;
+}
+.puhar-input:focus {
+  border-color: rgba(0, 201, 255, 0.5);
+  box-shadow: 0 0 0 3px rgba(0, 201, 255, 0.1);
+}
+.puhar-input::placeholder { color: var(--color-gray-4); }
+
+/* ──── Button Base ──── */
+.btn-primary {
+  background: linear-gradient(135deg, rgba(0,201,255,0.15), rgba(45,142,240,0.2));
+  border: 1px solid rgba(0, 201, 255, 0.4);
+  color: var(--color-cyan);
+  padding: 0.75rem 2rem;
+  border-radius: var(--radius-lg);
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: var(--text-sm);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 200ms;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.btn-primary:hover {
+  background: linear-gradient(135deg, rgba(0,201,255,0.25), rgba(45,142,240,0.35));
+  border-color: var(--color-cyan);
+  box-shadow: 0 0 20px rgba(0,201,255,0.2);
+  transform: translateY(-1px);
+}
+.btn-primary:active { transform: translateY(0); }
+.btn-primary:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.btn-ghost {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.15);
+  color: var(--color-gray-3);
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius-lg);
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: var(--text-sm);
+  cursor: pointer;
+  transition: all 200ms;
+}
+.btn-ghost:hover {
+  border-color: rgba(255,255,255,0.3);
+  color: var(--color-white);
+}
+
+/* ──── Section Separator ──── */
+.section-divider {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(0,201,255,0.3), transparent);
+}
+
+/* ──── Recharts Overrides ──── */
+.recharts-cartesian-grid line {
+  stroke: rgba(255,255,255,0.05) !important;
+}
+.recharts-text { fill: var(--color-gray-4) !important; }
+.recharts-tooltip-wrapper { pointer-events: none; }

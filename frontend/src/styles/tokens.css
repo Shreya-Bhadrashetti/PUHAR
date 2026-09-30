@@ -1,0 +1,155 @@
+/* ============================================================
+   PUHAR Design Tokens — "Voyage" Theme
+   Warm Sunrise-to-Dusk Bay of Bengal Maritime Palette
+   ============================================================ */
+
+:root {
+  /* ──── Palette: Warm Sunrise-to-Dusk Maritime ──── */
+  --color-indigo-deep:   #050C1A; /* Deepest sea night */
+  --color-indigo-night:  #0A1628; /* Midnight ocean */
+  --color-indigo-hull:   #122238; /* Vessel hull & dark ground */
+  --color-indigo-mist:   #1D334D; /* Coastal shadow & deck */
+
+  --color-teal-deep:     #0D3B43; /* Deep Bay of Bengal waters */
+  --color-teal-sea:      #175865; /* Rolling sea surface */
+  --color-teal-light:    #2A7B88; /* Sunlit wave crests */
+  --color-teal-foam:     #6DB7BD; /* Sea spray & foam */
+
+  --color-sand-pale:     #FAF5EB; /* Parchment white / main text */
+  --color-sand-warm:     #E8DFC8; /* Warm beach sand / secondary text */
+  --color-sand-dune:     #D4C3A3; /* Muted coast & card borders */
+  --color-sand-muted:    #8F836E; /* Subtle labels & coordinates */
+
+  --color-coral-accent:  #E07A5F; /* Sunrise coral highlight */
+  --color-coral-vibrant: #F26444; /* Active buttons & alerts */
+  --color-gold-dawn:     #F4A261; /* Sunrise horizon glow */
+  --color-amber-warning: #E76F51; /* Maritime cautionary notices */
+
+  --color-status-safe:   #2A9D8F; /* Green port status */
+  --color-status-warn:   #E9C46A; /* Amber port advisory */
+  --color-status-danger: #D62828; /* Cyclone red alert */
+
+  /* ──── Semantic Aliases ──── */
+  --bg-primary:      var(--color-indigo-deep);
+  --bg-surface:      var(--color-indigo-night);
+  --bg-elevated:     var(--color-indigo-hull);
+  --border-subtle:   rgba(212, 195, 163, 0.18);
+  --border-prominent:rgba(224, 122, 95, 0.35);
+
+  --text-main:       var(--color-sand-pale);
+  --text-muted:      var(--color-sand-warm);
+  --text-dim:        var(--color-sand-muted);
+  --accent-main:     var(--color-coral-accent);
+  --accent-glow:     rgba(224, 122, 95, 0.25);
+
+  /* ──── Typography ──── */
+  --font-display:    'Unbounded', 'Syne', sans-serif;
+  --font-heading:    'Syne', sans-serif;
+  --font-body:       'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-mono:       'JetBrains Mono', monospace;
+
+  /* ──── Sizing & Radii ──── */
+  --radius-sm:   0.375rem;
+  --radius-md:   0.75rem;
+  --radius-lg:   1.25rem;
+  --radius-xl:   1.75rem;
+  --radius-full: 9999px;
+
+  /* ──── Handcrafted Shadows (No synthetic neon blobs) ──── */
+  --shadow-woodcut: 0 4px 0 rgba(5, 12, 26, 0.7);
+  --shadow-card:    0 12px 32px -8px rgba(5, 12, 26, 0.65);
+  --shadow-warm:    0 10px 25px -5px rgba(224, 122, 95, 0.18);
+
+  /* ──── Animation ──── */
+  --ease-voyage:    cubic-bezier(0.19, 1, 0.22, 1);
+  --ease-buoyancy:  cubic-bezier(0.45, 0.05, 0.55, 0.95);
+  --duration-drift: 8000ms;
+  /* ──── Waypoint & Market Section Aliases ──── */
+  --c-cream:        #FAF5EB;
+  --c-cream-dim:    #D4C3A3;
+  --c-cream-line:   rgba(212, 195, 163, 0.22);
+  --c-turquoise:    #2FB8C6;
+  --c-warn:         #E76F51;
+  --c-coral:        #E07A5F;
+  --c-navy:         #0A1628;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-indigo-deep);
+  color: var(--color-sand-pale);
+}
+
+h1, h2, h3, .font-display {
+  font-family: var(--font-display);
+}
+
+.font-heading {
+  font-family: var(--font-heading);
+}
+
+.font-body {
+  font-family: var(--font-body);
+}
+
+/* ──── Waypoint Section Styles ──── */
+.waypoint-section {
+  position: relative;
+  padding: 6rem 1.5rem;
+  background-color: var(--color-indigo-deep);
+  color: var(--c-cream);
+  overflow: hidden;
+}
+
+.voyage-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.waypoint-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.log-stamp {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--c-turquoise);
+  padding: 4px 12px;
+  border: 1px solid rgba(47, 184, 198, 0.3);
+  background: rgba(13, 59, 67, 0.4);
+  border-radius: 4px;
+}
+
+.margin-note {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: 0.875rem;
+  color: var(--c-cream-dim);
+  max-width: 600px;
+}
+
+.waypoint-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: var(--c-cream);
+  margin-top: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.waypoint-subline {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--c-cream-dim);
+  max-width: 680px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
