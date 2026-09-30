@@ -28,12 +28,17 @@ class Settings(BaseSettings):
     rate_limit_per_minute: int = 60
 
     @model_validator(mode="after")
-    def resolve_sqlite_path(self) -> "Settings":
+    def resolve_database_url(self) -> "Settings":
         prefix = "sqlite:///./"
         if self.database_url.startswith(prefix):
             relative = self.database_url[len(prefix) :]
             object.__setattr__(self, "database_url", f"sqlite:///{(ROOT_DIR / relative).as_posix()}")
+        elif self.database_url.startswith("postgres://"):
+            object.__setattr__(self, "database_url", self.database_url.replace("postgres://", "postgresql+psycopg://", 1))
+        elif self.database_url.startswith("postgresql://") and "+psycopg" not in self.database_url:
+            object.__setattr__(self, "database_url", self.database_url.replace("postgresql://", "postgresql+psycopg://", 1))
         return self
+
 
     @property
     def cors_origin_list(self) -> list[str]:
