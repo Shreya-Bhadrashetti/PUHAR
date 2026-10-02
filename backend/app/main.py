@@ -73,10 +73,10 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-app.include_router(auth.router)
-app.include_router(models.router)
-app.include_router(advisor.router)
-app.include_router(alerts.router)
+app.include_router(auth.router,    prefix="/api")
+app.include_router(models.router,  prefix="/api")
+app.include_router(advisor.router, prefix="/api")
+app.include_router(alerts.router,  prefix="/api")
 
 
 @app.exception_handler(Exception)
